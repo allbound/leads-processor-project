@@ -20,7 +20,7 @@ Now, this project is bad, and it's your job, as an aspiring Allbound Engineer, t
     * This will include, but is not limited to, things like style guidelines, business needs, definition of done, and api schema
     
 * Step 3 : Read the Documentation
-    * Well, even bad code can have documentation. Make sure you read the documentation as to understand the intent of the original developer in their design decisions.
+    * Well, even bad code can have documentation. Make sure you read the documentation to get a full understanding of the project and codebase.
     
 * Step 4 : Read the Code and Start Reviewing
     * Now you can start leaving comments on the PR/MR opened in Step 1.
