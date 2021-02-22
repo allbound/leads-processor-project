@@ -1,0 +1,86 @@
+swagger: "2.0"
+info:
+  description: "The Lead Processor project allows users to host their own api that lets users process their leads list in new and exciting ways! For now the api grants the ability for users to upload a csv and have that csv be processed by our state of the art pipeline and be sent to onestar_file_hosting. "
+  version: "1.0.0"
+  title: "Leads Processor"
+  contact:
+    email: "engineering@allbound.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "leadsprocessor.allbound.io"
+basePath: "/api"
+tags:
+  - name: "Leads"
+    description: "Everything about your Leads"
+schemes:
+  - "https"
+  - "http"
+paths:
+  /upload:
+    post:
+      tags:
+        - "leads"
+      summary: "Upload a CSV of Leads to an External Processor"
+      description: ""
+      operationId: "uploadLeads"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Pet object that needs to be added to the store"
+          required: true
+          schema:
+            $ref: "#/definitions/CSVUpload"
+      responses:
+        "202":
+          description: "Upload has been accepted, possibly queued"
+        "400":
+          description: "Unprocessable CSV"
+          schema:
+            $ref: "#/definitions/InvalidCSVError"
+definitions:
+  CSVUpload:
+    type: "object"
+    properties:
+      data:
+        type: "object"
+        properties:
+          file_url:
+            type: "string"
+            format: "url"
+            example: "https://example.com/file.csv"
+      meta:
+        type: "object"
+        properties:
+          external_processor:
+            type : "string"
+            example : "onestar_upload"
+  InvalidCSVError:
+    type: "object"
+    properties:
+      errors:
+        type: "array"
+        items:
+          properties:
+            title:
+              type: "string"
+              example: "File Not CSV"
+            description:
+              type: "string"
+              example: "File was not parseable as a csv, please refer to user documentation."
+            code:
+              type: "integer"
+              example: 4873
+      meta:
+        type: "object"
+        properties:
+          external_processor:
+            type : "string"
+            example : "onestar_upload"
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
