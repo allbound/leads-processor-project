@@ -70,5 +70,5 @@ That being said, here are some pointers and questions we ask ourselves that shap
     * Are there race conditions?
     * Are there failsafes?
 * Are we leveraging existing code?
-    * Can the ramework handle this?
+    * Can the framework handle this?
     * Do we have an existing method we can re-use?
